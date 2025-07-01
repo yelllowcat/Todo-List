@@ -1,0 +1,49 @@
+body{
+     margin: 0;     
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+   grid-template-columns: 300px 1fr;
+}
+aside{
+    height: 100%;
+    background-color: #91C8E4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 50px;
+    
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    align-items: center;
+}
+
+.topSection{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 50px;
+}
+.proyectsSection{
+    display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 50px;
+}
+.headerPro{
+gap: 20px;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.rabbit{
+    height: 200px;
+    width: 200px;
+}
