@@ -5,13 +5,15 @@ body{
     display: grid;
    grid-template-columns: 300px 1fr;
 }
+
 aside{
     height: 100%;
     background-color: #91C8E4;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 50px;
+    gap: 20px;
+  
     
 }
 
@@ -26,18 +28,33 @@ header{
  display: flex;
  flex-direction: column;
  align-items: center;
- gap: 50px;
+ gap: 30px;
+    align-items: start;
+    margin-left: 20px;
 }
 .proyectsSection{
     display: flex;
  flex-direction: column;
  align-items: center;
- gap: 50px;
+
 }
 .headerPro{
-gap: 20px;
+    width: 95%;
+display: flex;
+align-items: flex-start;
+margin: 10px;
+margin-bottom: 0;
+justify-content: space-between;
+
 }
 .main{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,4 +63,87 @@ gap: 20px;
 .rabbit{
     height: 200px;
     width: 200px;
+}
+.formProyect{
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+.formTask{
+    height:15vh ;
+    width: 50vw;
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+.enterTask{
+    margin: 2px;
+}
+.buttons{
+   align-self: flex-end;
+   
+}
+.titleTask{
+    font-size: 1.3rem;
+    opacity: 0.7;
+}
+.formTask input{
+    border: none;
+}
+ .buttons{
+    display: flex;
+    gap: 10px;
+}
+select{
+    align-items: flex-start;
+}
+.userInfo{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.topSection div {
+ display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 90%;
+    border-radius: 10px;
+    padding: 3px;
+}
+.topSection div:hover{
+    background-color: #f2f2f2;
+    
+}
+
+.headerPro h2{
+    margin-top: 0;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+.proyects{
+    width: 100%;
+}
+li{
+    width: 95%;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   border-radius: 10px;
+       padding: 3px;
+
+}
+li:hover{
+    background-color: #f2f2f2;
+    
+}
+.hash{
+    font-weight: 100;
+    font-size: 1.3rem;
+}
+ul{
+    margin: 0;
+    padding: 15px;
+    padding-right: 0px;
 }

@@ -8,31 +8,89 @@
   <body>
     <aside>
       <header>
-        <div>image</div>
-        <div>user</div>
-        <div>icon</div>
-        <div>icon</div>
+        <div class="userInfo">
+          <img src="./icons/user.png" alt="User icon" />
+          <span>David</span>
+        </div>
+        <img src="./icons/panel-left.png" alt="sidebar icon" />
       </header>
       <section class="topSection">
-        <div>inbox</div>
-        <div>completed</div>
+        <div class="divTask">
+          <img src="./icons/badge-plus.png" alt="" />
+          <span>Add task</span>
+        </div>
+        <div class="inbox">
+          <img src="./icons/inbox.png" alt="inbox icon" />
+          <span>Inbox</span>
+        </div>
+        <div class="today">
+          <img src="./icons/calendar.png" alt="calendar icon" />
+          <span>Today</span>
+        </div>
+        <div class="completed">
+          <img src="./icons/circle-check.png" alt="check icon" />
+          <span>Completed</span>
+        </div>
       </section>
       <section class="proyectsSection">
         <header class="headerPro">
-          <h2>Proyects</h2>
+          <h2>My Proyects</h2>
           <img class="add" src="./icons/plus.png" alt="add Icon" />
         </header>
-        <div class="proyects"></div>
+        <div class="proyects">
+          <ul class="list">
+            <li id="Default">
+              <span class="hash">#</span><span>Default</span><span>1</span>
+            </li>
+          </ul>
+        </div>
       </section>
     </aside>
     <section class="main">
       <h1>Title</h1>
-      <img
-        class="rabbit"
-        src="./icons/rabbitBook.jpg"
-        alt="rabbit reading a book"
-      />
-      <button>add task</button>
+      <div class="content">
+        <div class="container">
+          <img
+            class="rabbit"
+            src="./icons/rabbitBook.jpg"
+            alt="rabbit reading a book"
+          />
+          <button class="addTask">add task</button>
+        </div>
+      </div>
     </section>
+    <dialog class="dialogTask">
+      <div class="formTask">
+        <p class="enterTask">Enter a task</p>
+        <input type="text" class="titleTask" placeholder="Title" />
+        <input type="text" class="description" placeholder="Description" />
+        <button class="priority">Priority</button>
+        <div class="buttons">
+          <select name="proOptions" id="proOptions">
+            <option value="inbox">Inbox</option>
+          </select>
+          <button autofocus class="cancelTask">Close</button>
+          <button type="submit" class="submit">Submit</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="dialogProyect">
+      <div class="formProyect">
+        <span>Add proyect</span>
+        <span class="proyectName">name</span>
+        <input type="text" class="nameField" form="proyectName" />
+        <span class="proyectColor">color</span>
+        <select name="colorOptions" id="colorOptions">
+          <option value="color">red</option>
+          <option value="color">green</option>
+          <option value="color">blue</option>
+        </select>
+        <div class="buttons">
+          <button class="cancelPro" autofocus>Cancel</button>
+          <button type="submit" class="submitPro">Add</button>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>
