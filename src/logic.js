@@ -1,14 +1,19 @@
+import { format } from "date-fns";
+import { da } from "date-fns/locale";
+const { isValid } = require("date-fns");
+
 export const myLists = {
-  default: {},
+  Default: {},
 };
 
 class TodoItem {
-  constructor(id, title, description, dueDate, priority) {
+  constructor(id, title, description, dueDate, priority, completed) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.completed = completed;
   }
 }
 
@@ -17,20 +22,55 @@ export function addList(name) {
 }
 addList("si");
 
-export function addTodo(name, title, description, dueDate, priority) {
-  console.log(myLists[name]);
+export function addTodo(
+  name = "Default",
+  title,
+  description,
+  date = format(new Date(), "MM/dd/yyyy"),
+  priority,
+  completed = false
+) {
+  //console.log(myLists[name]);
   if (myLists[name]) {
     let id = crypto.randomUUID();
-    const currentDate = new Date();
-    const todo = new TodoItem(id, title, description, currentDate, priority);
+    if (date == "") {
+      date = format(new Date(), "MM/dd/yyyy");
+    }
+    const todo = new TodoItem(
+      id,
+      title,
+      description,
+      date,
+      priority,
+      completed
+    );
     myLists[name][title] = todo;
   }
 }
-addTodo("si", "new", "no", "si", "no");
-addTodo("si", "2", "no", "si", "no");
-addTodo("si", "4", "no", "si", "no");
 
-console.log(myLists);
+addTodo(
+  "Default",
+  "new",
+  "2121",
+  format(new Date(2014, 1, 11), "MM/dd/yyyy"),
+  "no"
+);
+addTodo(
+  "Default",
+  "2",
+  "212",
+  format(new Date(2003, 3, 10), "MM/dd/yyyy"),
+  "no"
+);
+addTodo(
+  "Default",
+  "4",
+  "2112",
+  format(new Date(2024, 4, 4), "MM/dd/yyyy"),
+  "no"
+);
+
+//console.log(myLists);
 
 export function selectProyect(name) {
   let currentProyect;
@@ -40,6 +80,14 @@ export function selectProyect(name) {
 }
 
 export function getCount(title) {
-  console.log(title);
+  // console.log(title);
   return Object.keys(myLists[title]).length;
+}
+
+export function deleteTask(proyect, task) {
+  delete proyect[task];
+}
+export function deleteProyect(proyect) {
+  console.log(proyect);
+  delete myLists[proyect];
 }
