@@ -1,10 +1,7 @@
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
+import { myLists } from "./localStorage";
 const { isValid } = require("date-fns");
-
-export const myLists = {
-  Default: {},
-};
 
 class TodoItem {
   constructor(id, title, description, dueDate, priority, completed) {
@@ -20,7 +17,6 @@ class TodoItem {
 export function addList(name) {
   myLists[name] = {};
 }
-addList("si");
 
 export function addTodo(
   name = "Default",
@@ -55,7 +51,7 @@ addTodo(
   format(new Date(2014, 1, 11), "MM/dd/yyyy"),
   "no"
 );
-addTodo(
+/*addTodo(
   "Default",
   "2",
   "212",
@@ -68,7 +64,7 @@ addTodo(
   "2112",
   format(new Date(2024, 4, 4), "MM/dd/yyyy"),
   "no"
-);
+);*/
 
 //console.log(myLists);
 

@@ -1,6 +1,6 @@
 import { addList, addTodo, deleteTask, deleteProyect } from "./logic.js";
 import { getCount } from "./logic.js";
-import { myLists } from "./logic.js";
+import { populateStorage, myLists } from "./localStorage.js";
 import { selectProyect } from "./logic.js";
 import odinImage from "./icons/panel-left.png";
 import rabbitImage from "./icons/rabbitBook.jpg";
@@ -53,11 +53,11 @@ export function domLogic() {
   selectProyectDom();
   toggleAside();
   user();
+  displayStored();
   trashDOM.addEventListener("click", () => {
     deleteProyect("Default");
     trashDOM.parentNode.remove();
-
-    console.log(myLists);
+    localStorage.setItem("lists", JSON.stringify(myLists));
   });
   divToday.addEventListener("click", renderToday);
   divCompleted.addEventListener("click", renderCompleted);
@@ -89,6 +89,10 @@ export function domLogic() {
       titleTask.value = "";
       description.value = "";
       inputDate.value = "";
+      console.log("tesys");
+      console.log(myLists);
+      populateStorage();
+
       dialog.close();
     }
   });
@@ -137,11 +141,12 @@ export function domLogic() {
       trash.addEventListener("click", () => {
         deleteProyect(trash.parentNode.id);
         trash.parentNode.remove();
-        console.log(myLists);
       });
       renderProyect(currentProyect);
       h1Title.textContent = nameField.value;
       nameField.value = "";
+      populateStorage();
+
       dialogPro.close();
     }
   });
@@ -162,6 +167,10 @@ export function domLogic() {
   }
 
   function renderProyect(proyect) {
+    localStorage.setItem("lists", JSON.stringify(myLists));
+
+    console.log("test");
+    console.log(proyect);
     content.children[0].remove();
     const container = document.createElement("div");
     container.classList.add("container");
@@ -189,8 +198,6 @@ export function domLogic() {
           delBtn.textContent = "delete";
           delBtn.classList.add("delBtn");
           delBtn.addEventListener("click", () => {
-            console.log(proyect, element.title);
-            console.log(myLists);
             deleteTask(proyect, element.title);
             renderProyect(proyect);
           });
@@ -341,5 +348,49 @@ export function domLogic() {
     userInfo.addEventListener("click", () => {
       username.textContent = prompt("Select Name: ");
     });
+  }
+
+  function displayStored() {
+    for (const key in myLists) {
+      if (!proyectExist(key)) {
+        addList(key);
+        const proyectLi = document.createElement("li");
+        proyectLi.id = key;
+        const hash = document.createElement("span");
+        hash.textContent = "#";
+        hash.classList.add("hash");
+        const spanProName = document.createElement("span");
+        spanProName.classList.add("spanName");
+        spanProName.textContent = key;
+        const trash = document.createElement("img");
+
+        trash.src = trashCan;
+        trash.classList.add("trash");
+
+        proyectLi.appendChild(hash);
+        proyectLi.appendChild(spanProName);
+        proyectLi.appendChild(trash);
+
+        list.appendChild(proyectLi);
+        selectProyectDom();
+
+        const option = document.createElement("option");
+
+        option.value = key;
+        option.textContent = key;
+        proOptions.appendChild(option);
+
+        const currentProyect = selectProyect(key);
+        trash.addEventListener("click", () => {
+          deleteProyect(trash.parentNode.id);
+          trash.parentNode.remove();
+        });
+        renderProyect(currentProyect);
+        console.log("test3");
+        console.log(currentProyect);
+        h1Title.textContent = key;
+        populateStorage();
+      }
+    }
   }
 }
