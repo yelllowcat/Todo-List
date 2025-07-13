@@ -1,6 +1,6 @@
 import { addList, addTodo, deleteTask, deleteProyect } from "./logic.js";
 import { getCount } from "./logic.js";
-import { populateStorage, myLists } from "./localStorage.js";
+import { populateStorage, myLists, auxList } from "./localStorage.js";
 import { selectProyect } from "./logic.js";
 import odinImage from "./icons/panel-left.png";
 import rabbitImage from "./icons/rabbitBook.jpg";
@@ -50,10 +50,11 @@ const username = document.querySelector(".username");
 const trashDOM = document.querySelector(".trash");
 
 export function domLogic() {
+  displayStored();
+
   selectProyectDom();
   toggleAside();
   user();
-  displayStored();
   trashDOM.addEventListener("click", () => {
     deleteProyect("Default");
     trashDOM.parentNode.remove();
@@ -91,7 +92,10 @@ export function domLogic() {
       inputDate.value = "";
       console.log("tesys");
       console.log(myLists);
-      populateStorage();
+      console.log("aux");
+      console.log(auxList);
+      //  populateStorage();
+      localStorage.setItem("lists", JSON.stringify(myLists));
 
       dialog.close();
     }
@@ -140,6 +144,8 @@ export function domLogic() {
       const currentProyect = selectProyect(nameField.value);
       trash.addEventListener("click", () => {
         deleteProyect(trash.parentNode.id);
+        localStorage.setItem("lists", JSON.stringify(myLists)); //this work idk why
+
         trash.parentNode.remove();
       });
       renderProyect(currentProyect);
@@ -167,7 +173,7 @@ export function domLogic() {
   }
 
   function renderProyect(proyect) {
-    localStorage.setItem("lists", JSON.stringify(myLists));
+    //   localStorage.setItem("lists", JSON.stringify(myLists));
 
     console.log("test");
     console.log(proyect);
@@ -199,6 +205,7 @@ export function domLogic() {
           delBtn.classList.add("delBtn");
           delBtn.addEventListener("click", () => {
             deleteTask(proyect, element.title);
+            localStorage.setItem("lists", JSON.stringify(myLists));
             renderProyect(proyect);
           });
           proyectLi.appendChild(check);
@@ -351,9 +358,14 @@ export function domLogic() {
   }
 
   function displayStored() {
+    console.log("mis listas");
+    console.log(myLists);
+    console.log("aux");
+    console.log(auxList);
     for (const key in myLists) {
+      console.log("testkeY");
+      console.log(key);
       if (!proyectExist(key)) {
-        addList(key);
         const proyectLi = document.createElement("li");
         proyectLi.id = key;
         const hash = document.createElement("span");
@@ -384,12 +396,15 @@ export function domLogic() {
         trash.addEventListener("click", () => {
           deleteProyect(trash.parentNode.id);
           trash.parentNode.remove();
+          console.log(myLists);
+          console.log("comment");
+          localStorage.setItem("lists", JSON.stringify(myLists)); //this work idk why
         });
         renderProyect(currentProyect);
         console.log("test3");
         console.log(currentProyect);
         h1Title.textContent = key;
-        populateStorage();
+        //  populateStorage();
       }
     }
   }

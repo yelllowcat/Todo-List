@@ -1,6 +1,7 @@
 export let myLists = {
   Default: {},
 };
+export let auxList;
 
 export function storageAvailable(type) {
   let storage;
@@ -40,10 +41,14 @@ export function populateStorage() {
   console.log(JSON.parse(localStorage.getItem("lists")));
   setLists();
 }
-function setLists() {
-  const currentList = JSON.parse(localStorage.getItem("lists"));
+export function setLists() {
+  console.log("hidbhnakhdak");
+  console.log(localStorage.getItem("lists"));
+  let currentList = JSON.parse(localStorage.getItem("lists"));
+  auxList = currentList;
+
   console.log("currentList");
+  console.log(JSON.stringify(currentList, null, 2));
   console.log(currentList);
-  console.log(myLists);
   myLists = currentList;
 }

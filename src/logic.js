@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
-import { myLists } from "./localStorage";
+import { populateStorage, myLists } from "./localStorage";
 const { isValid } = require("date-fns");
 
 class TodoItem {
@@ -42,15 +42,16 @@ export function addTodo(
     );
     myLists[name][title] = todo;
   }
+  populateStorage();
 }
-
+/*
 addTodo(
   "Default",
   "new",
   "2121",
   format(new Date(2014, 1, 11), "MM/dd/yyyy"),
   "no"
-);
+);/*
 /*addTodo(
   "Default",
   "2",
