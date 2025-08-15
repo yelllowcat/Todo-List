@@ -45,7 +45,6 @@ export function setLists() {
   console.log("hidbhnakhdak");
   console.log(localStorage.getItem("lists"));
   let currentList = JSON.parse(localStorage.getItem("lists"));
-  auxList = currentList;
 
   console.log("currentList");
   console.log(JSON.stringify(currentList, null, 2));
