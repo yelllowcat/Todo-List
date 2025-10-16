@@ -7,6 +7,8 @@ import {
   myLists,
   setLists,
 } from "./localStorage.js";
-setLists();
+
+// Initialize localStorage first
 display();
+// Then initialize DOM
 domLogic();

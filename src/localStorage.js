@@ -44,10 +44,25 @@ export function populateStorage() {
 }
 export function setLists() {
   console.log(localStorage.getItem("lists"));
-  let currentList = JSON.parse(localStorage.getItem("lists"));
-
-  console.log("currentList");
-  console.log(JSON.stringify(currentList, null, 2));
-  console.log(currentList);
-  myLists = currentList;
+  const storedLists = localStorage.getItem("lists");
+  
+  if (storedLists) {
+    try {
+      let currentList = JSON.parse(storedLists);
+      
+      console.log("currentList");
+      console.log(JSON.stringify(currentList, null, 2));
+      console.log(currentList);
+      
+      // Update myLists properties instead of reassigning
+      if (currentList && typeof currentList === 'object') {
+        Object.keys(myLists).forEach(key => delete myLists[key]);
+        Object.assign(myLists, currentList);
+      }
+    } catch (e) {
+      console.error("Error parsing localStorage:", e);
+      // If parsing fails, initialize with default
+      populateStorage();
+    }
+  }
 }
