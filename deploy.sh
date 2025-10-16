@@ -31,9 +31,9 @@ echo "Committing changes..."
 git add .
 git commit -m "Deploy to GitHub Pages"
 
-# Push to gh-pages
+# Push to gh-pages (force push to overwrite)
 echo "Pushing to gh-pages..."
-git push origin gh-pages
+git push origin gh-pages --force
 
 # Switch back to original branch
 echo "Switching back to $CURRENT_BRANCH..."
