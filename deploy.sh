@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Build the project for production
-echo "Building project..."
-npm run build
+# Build the project for production (GitHub Pages)
+echo "Building project for GitHub Pages..."
+DEPLOY_TARGET=github npm run build
 
 # Check if build was successful
 if [ ! -d "build" ]; then

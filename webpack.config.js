@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === "production";
+  const deployTarget = process.env.DEPLOY_TARGET || "netlify"; // "netlify" or "github"
   
   return {
     mode: argv.mode || "development",
@@ -12,7 +13,7 @@ module.exports = (env, argv) => {
       filename: "main.js",
       path: path.resolve(__dirname, "build"),
       clean: true,
-      publicPath: isProduction ? "/Todo-List/" : "/",
+      publicPath: isProduction && deployTarget === "github" ? "/Todo-List/" : "/",
     },
     devtool: isProduction ? "source-map" : "eval-source-map",
     plugins: [
